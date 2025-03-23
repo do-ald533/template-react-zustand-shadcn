@@ -1,0 +1,15 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      glob: "*.{js,ts}"
+      run: pnpm biome check {staged_files}
+    format:
+      glob: "*.{js,ts}"
+      run: pnpm biome format --write {staged_files}
+
+pre-push:
+  parallel: true
+  commands:
+    types:
+      run: pnpm tsc --noEmit
