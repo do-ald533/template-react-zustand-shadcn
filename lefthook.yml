@@ -2,11 +2,16 @@ pre-commit:
   parallel: true
   commands:
     lint:
-      glob: "*.{js,ts}"
+      glob: "*.{js,ts,tsx}"
       run: pnpm biome check {staged_files}
     format:
-      glob: "*.{js,ts}"
+      glob: "*.{js,ts,tsx}"
       run: pnpm biome format --write {staged_files}
+
+commit-msg:
+  commands:
+    lint-commit-msg:
+      run: pnpx commitlint --edit
 
 pre-push:
   parallel: true
